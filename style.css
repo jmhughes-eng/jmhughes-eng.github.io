@@ -1,0 +1,921 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --accent: #ff7300;
+    --text: #f7f8f5;
+    --muted: rgba(247, 248, 245, 0.75);
+
+    /* Put texturebg.jpg in the same folder as index.html */
+    --background-image: url("texturebg.jpg");
+
+    /* 0 = no darkness, 1 = completely dark */
+    --background-darkness: 0.60;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #111412;
+    color: var(--text);
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background-image: var(--background-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(5, 8, 6, var(--background-darkness));
+}
+
+.content {
+    width: 100%;
+    max-width: 750px;
+}
+
+.content > * {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+h1 {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: clamp(3.75rem, 10vw, 8rem);
+    letter-spacing: -0.07em;
+    line-height: 0.95;
+    animation-delay: 0.1s;
+}
+
+h2 {
+    color: var(--muted);
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-top: 1.5rem;
+    animation-delay: 0.25s;
+}
+
+.about {
+    max-width: 600px;
+    margin: 2rem auto 2.5rem;
+    animation-delay: 0.4s;
+}
+
+.about p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.portfolio-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.35rem 2.3rem;
+
+    border: 2px solid var(--accent);
+    border-radius: 999px;
+
+    background: var(--accent);
+    color: #101410;
+
+    font-size: 1.35rem;
+    font-weight: 700;
+
+    transition: 0.25s ease;
+    animation-delay: 0.55s;
+}
+
+.portfolio-button:hover {
+    background: transparent;
+    color: var(--accent);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.secondary-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6rem;
+    margin-top: 3.5rem;
+
+    animation-delay: 0.7s;
+}
+
+.secondary-button {
+    width: 150px;
+    height: 48px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid rgba(247, 248, 245, 0.45);
+    border-radius: 999px;
+
+    background: rgba(247, 248, 245, 0.15);
+    color: var(--text);
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+.secondary-button:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #101410;
+    transform: translateY(-3px);
+}
+
+.linkedin-button {
+    width: 150px;
+    height: 48px;
+    padding: 0.5rem 1rem;
+}
+
+.linkedin-logo {
+    display: block;
+    width: 70px;
+    height: 19px;
+
+    background-color: var(--text);
+
+    mask-image: url("linkedin-logo.png");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+
+    -webkit-mask-image: url("linkedin-logo.png");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+
+    transition: background-color 0.25s ease;
+}
+
+.linkedin-button:hover .linkedin-logo {
+    background-color: #101410;
+}
+
+/* Resume button */
+.resume-button {
+    gap: 0.65rem;
+}
+
+.resume-button i {
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 2rem 1.25rem;
+    }
+
+    .secondary-links {
+        gap: 1.5rem;
+        margin-top: 3rem;
+    }
+
+    .secondary-button {
+        width: 140px;
+    }
+}
+
+/* Portfolio overview page */
+
+.overview-page {
+    isolation: isolate;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: #111412;
+    color: var(--text);
+}
+
+.overview-page::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image: var(--background-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overview-page::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(5, 8, 6, var(--background-darkness));
+}
+
+.overview {
+    width: 100%;
+    max-width: 950px;
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 3.5rem 2rem 6rem;
+
+    position: relative;
+}
+
+.overview-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.overview-label {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+}
+
+.overview-header h1 {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+}
+
+.overview-intro {
+    margin-top: 1rem;
+
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 55px 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+
+    padding: 1rem 1.5rem;
+
+    border: 1px solid rgba(247, 248, 245, 0.3);
+    border-radius: 8px;
+
+    background: rgba(247, 248, 245, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    background: rgba(255, 115, 0, 0.14);
+    transform: translateX(6px);
+}
+
+.project-number {
+    color: var(--accent);
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.project-arrow {
+    align-self: center;
+    color: var(--accent);
+    font-size: 1.6rem;
+    transition: 0.25s ease;
+}
+
+.project-card h2 {
+    margin-top: 0;
+    color: var(--text);
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+}
+
+.project-arrow {
+    color: var(--accent);
+    font-size: 1.6rem;
+    transition: 0.25s ease;
+}
+
+.project-card:hover .project-arrow {
+    transform: translateX(5px);
+}
+
+.page-navigation {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    left: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+.page-nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    padding: 0.7rem 1rem;
+
+    border: 1px solid rgba(247, 248, 245, 0.4);
+    border-radius: 999px;
+
+    background: rgba(17, 20, 18, 0.85);
+    color: var(--text);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    pointer-events: auto;
+    transition: 0.25s ease;
+}
+
+.page-nav-button:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #101410;
+    transform: translateY(-3px);
+}
+
+.page-nav-button span {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.page-nav-button:hover span {
+    color: #101410;
+}
+
+@media (max-width: 600px) {
+    .overview {
+        padding: 3rem 1rem 6rem;
+    }
+
+    .overview-header {
+        margin-bottom: 2rem;
+    }
+
+    .project-card {
+        grid-template-columns: 35px 1fr auto;
+        gap: 0.75rem;
+        padding: 0.9rem 1rem;
+    }
+
+    .project-card h2 {
+        font-size: 1rem;
+    }
+
+    .page-navigation {
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+    }
+}
+
+/* Fade-in animation for portfolio overview */
+
+.overview-header {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+.project-card {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.project-card:nth-child(1) {
+    animation-delay: 0.35s;
+}
+
+.project-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.project-card:nth-child(3) {
+    animation-delay: 0.65s;
+}
+
+.page-nav-button {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.page-nav-button:first-child {
+    animation-delay: 0.85s;
+}
+
+.page-nav-button:last-child {
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Non-scrolling project pages */
+
+.project-page {
+    isolation: isolate;
+    height: 100vh;
+    overflow: hidden;
+
+    background: #111412;
+    color: var(--text);
+}
+
+.project-page::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image: var(--background-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.project-page::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(5, 8, 6, var(--background-darkness));
+}
+
+.project-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 4rem;
+
+    height: 100vh;
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 3rem 5rem 5rem;
+}
+
+/* Left visual area */
+
+.project-visuals {
+    width: 100%;
+}
+
+.main-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    border: 1px solid rgba(247, 248, 245, 0.3);
+    border-radius: 10px;
+
+    background: rgba(247, 248, 245, 0.12);
+    color: var(--muted);
+
+    font-size: 1rem;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.main-visual img,
+.main-visual video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.visual-thumbnails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    margin-top: 1rem;
+}
+
+.thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    aspect-ratio: 16 / 9;
+
+    border: 1px solid rgba(247, 248, 245, 0.25);
+    border-radius: 8px;
+
+    background: rgba(247, 248, 245, 0.08);
+    color: var(--muted);
+
+    font-size: 0.8rem;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.thumbnail img,
+.thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right information area */
+
+.project-information {
+    max-width: 530px;
+
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.project-label {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.project-information h1 {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: clamp(2.3rem, 3vw, 3.5rem);
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+}
+
+.project-section {
+    border-top: 1px solid rgba(247, 248, 245, 0.25);
+    margin-top: 1.5rem;
+    padding-top: 0.9rem;
+}
+
+.project-section h2 {
+    color: var(--accent);
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.project-section p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 0.45rem;
+}
+
+/* Bottom navigation */
+
+.project-navigation {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    left: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+.project-navigation .page-nav-button {
+    pointer-events: auto;
+}
+
+/* Mobile layout */
+
+@media (max-width: 850px) {
+    .project-page {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    .project-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+        gap: 2rem;
+        padding: 3rem 1.25rem 7rem;
+    }
+
+    .project-information {
+        max-width: none;
+    }
+
+    .project-information h1 {
+        font-size: 3.5rem;
+    }
+
+    .project-navigation {
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+    }
+}
+/* Small Rocket visual layout */
+
+.small-rocket-visuals {
+    width: 100%;
+    max-width: 680px;
+    justify-self: center;
+}
+
+/* Top horizontal photo */
+.small-rocket-visuals .main-visual {
+    width: 600px;
+    height: 175px;
+
+    margin: 0 auto;
+    aspect-ratio: auto;
+    overflow: hidden;
+}
+
+.small-rocket-visuals .main-visual img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Bottom portrait-photo container */
+.small-rocket-visuals .visual-thumbnails {
+    width: min(600px, 100%);
+
+    display: grid;
+    grid-template-columns: repeat(2, 250px);
+    justify-content: space-between;
+
+    margin: 1rem auto 0;
+}
+
+/* Bottom portrait photos */
+.small-rocket-visuals .thumbnail {
+    width: 250px;
+    aspect-ratio: 3 / 4 !important;
+    overflow: hidden;
+}
+
+.small-rocket-visuals .thumbnail img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Smaller screens */
+@media (max-width: 700px) {
+    .small-rocket-visuals .main-visual {
+        height: 220px;
+    }
+
+    .small-rocket-visuals .visual-thumbnails {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .small-rocket-visuals .thumbnail {
+        width: 100%;
+    }
+}
+
+/* Final drone layout fix */
+
+.drone-visuals {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 0.82fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 600px;
+    height: min(68vh, 600px);
+
+    column-gap: 1rem;
+    row-gap: 1rem;
+
+    justify-self: center;
+}
+
+.drone-small,
+.drone-big {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.drone-small {
+    aspect-ratio: auto !important;
+}
+
+.drone-photo-one {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.drone-photo-two {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.drone-big {
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+.drone-small img,
+.drone-big img,
+.drone-big video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Rose Float visual layout */
+
+.rose-float-visuals {
+    display: grid;
+    grid-template-columns: minmax(0, 0.63fr) minmax(0, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 760px;
+    height: min(65vh, 600px);
+
+    gap: 1rem;
+    justify-self: center;
+}
+
+/* Portrait video on the left */
+.rose-float-video {
+    grid-column: 1;
+    grid-row: 1 / 3;
+
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+
+    border: 1px solid rgba(247, 248, 245, 0.3);
+    border-radius: 10px;
+    background: rgba(247, 248, 245, 0.12);
+}
+
+.rose-float-video video {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: contain;
+}
+
+/* Two landscape photos on the right */
+.rose-float-photo {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+
+    border: 1px solid rgba(247, 248, 245, 0.3);
+    border-radius: 10px;
+    background: rgba(247, 248, 245, 0.12);
+}
+
+.rose-float-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.rose-float-photo.photo-one {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.rose-float-photo.photo-two {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Mobile layout */
+@media (max-width: 850px) {
+    .rose-float-visuals {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        height: auto;
+        max-width: 100%;
+    }
+
+    .rose-float-video {
+        grid-column: 1 / 3;
+        grid-row: 1;
+
+        aspect-ratio: 9 / 16;
+        max-height: 600px;
+        justify-self: center;
+        width: min(100%, 350px);
+    }
+
+    .rose-float-photo.photo-one {
+        grid-column: 1;
+        grid-row: 2;
+        aspect-ratio: 16 / 9;
+    }
+
+    .rose-float-photo.photo-two {
+        grid-column: 2;
+        grid-row: 2;
+        aspect-ratio: 16 / 9;
+    }
+}
